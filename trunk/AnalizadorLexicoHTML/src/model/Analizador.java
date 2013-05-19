@@ -1,9 +1,12 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Analizador {
@@ -55,5 +58,32 @@ public class Analizador {
 
         fr.close();
         br.close();
+    }
+    
+    public String leerArchivo(String ruta) throws FileNotFoundException, IOException{
+        String contenido="", linea;
+        this.fr = new FileReader(ruta);
+        this.br = new BufferedReader(fr);
+        
+        while ((linea = br.readLine()) != null){
+            contenido += linea + "\n";
+        }
+        
+        br.close();
+        fr.close();
+        
+        return contenido;
+    }
+    
+    public void imprimirArchivo(String ruta, String contenido) throws IOException{
+        FileWriter fw = new FileWriter(ruta);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pw = new PrintWriter(bw);
+        
+        pw.print(contenido);
+        
+        pw.close();
+        bw.close();
+        fw.close();
     }
 }

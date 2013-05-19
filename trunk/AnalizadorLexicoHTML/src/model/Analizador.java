@@ -15,12 +15,11 @@ public class Analizador {
     private BufferedReader br = null;
     private String ruta;
     private StringTokenizer token;
-    private Etiquetas et;
-    private ArrayList<String> lista;
+ 
 
     public Analizador(String ruta) {
         this.ruta = ruta;
-        this.lista = new ArrayList<>();
+       
     }
     
     public Analizador(){
@@ -45,7 +44,7 @@ public class Analizador {
 
     public String analizarLex() throws FileNotFoundException, IOException {
 
-        String linea, contenido = "", lexema;
+        String linea, contenido = "", lexema="";
         this.fr = new FileReader(this.ruta);
         this.br = new BufferedReader(this.fr);
 
@@ -56,14 +55,13 @@ public class Analizador {
         this.token = new StringTokenizer(contenido);
 
         while (token.hasMoreTokens()) {
-            lexema = this.et.validarEtiqueta(token.nextToken());
-            lista.add(lexema);
+            lexema += Etiquetas.getINSTANCE().validarEtiqueta(token.nextToken()) + "\n";
         }
 
         fr.close();
         br.close();
         
-        return parseString(lista);
+        return lexema;
     }
     
     public String leerArchivo() throws FileNotFoundException, IOException{
@@ -93,13 +91,6 @@ public class Analizador {
         fw.close();
     }
     
-    private String parseString(ArrayList<String> array){
-        String parsed="";
-        
-        for(int i=0; i<array.size();i++){
-            parsed += array.get(i) + "\n";
-        }
-        
-        return parsed;
-    }
+   
+   
 }

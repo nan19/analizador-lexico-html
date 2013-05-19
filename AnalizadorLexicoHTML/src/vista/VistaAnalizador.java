@@ -5,7 +5,12 @@
 package vista;
 
 import controlador.AnalizadorControlador;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import model.ExtensionFileFilter;
 /**
  *
@@ -18,7 +23,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
      */
     public VistaAnalizador() {
         initComponents();
-        yucalex = new AnalizadorControlador();
+        yucalexControl = new AnalizadorControlador();
         filtro = new ExtensionFileFilter("Archivo HTML", "html");
     }
 
@@ -159,13 +164,30 @@ public class VistaAnalizador extends javax.swing.JFrame {
         chooser.setFileFilter(filtro);
         chooser.setDialogTitle("Seleccione un archivo HTML");
         chooser.setMultiSelectionEnabled(false);
-        
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int showOpenDialog = chooser.showOpenDialog(this);
 
-           
+        yucalexControl.setRutaArchivo(chooser.getSelectedFile().getPath());
+        try {
+            yucalexControl.abrirArchivo(htmlTextArea);
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_abrirBtnActionPerformed
 
     private void generarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+
+            yucalexControl.analizar(lexTextArea);
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_generarBtnActionPerformed
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
@@ -215,7 +237,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
     }
     
     //Variables propias
-    private AnalizadorControlador yucalex;
+    private AnalizadorControlador yucalexControl;
     private ExtensionFileFilter filtro;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutBtn;

@@ -143,6 +143,10 @@ public class Etiquetas {
                 etiqueta = "<" + validar + ">";
                 lexema = "Etiqueta de fin de enlace a otro elemento";
                 break;
+            default:
+                etiqueta = validar;
+                lexema = "Esto es texto";
+                break;
 
         }
         return etiqueta + " - " + lexema;

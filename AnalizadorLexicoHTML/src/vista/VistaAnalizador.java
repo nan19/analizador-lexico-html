@@ -4,6 +4,9 @@
  */
 package vista;
 
+import controlador.AnalizadorControlador;
+import javax.swing.JFileChooser;
+import model.ExtensionFileFilter;
 /**
  *
  * @author ArandiLopez
@@ -15,6 +18,8 @@ public class VistaAnalizador extends javax.swing.JFrame {
      */
     public VistaAnalizador() {
         initComponents();
+        yucalex = new AnalizadorControlador();
+        filtro = new ExtensionFileFilter("Archivo HTML", "html");
     }
 
     /**
@@ -77,6 +82,11 @@ public class VistaAnalizador extends javax.swing.JFrame {
 
         imprimirBtn.setText("Generar Lex");
         imprimirBtn.setToolTipText("Genera un archivo con la salida del analizador lexico");
+        imprimirBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimirBtnActionPerformed(evt);
+            }
+        });
 
         aboutBtn.setText("About Us");
         aboutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +155,13 @@ public class VistaAnalizador extends javax.swing.JFrame {
 
     private void abrirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirBtnActionPerformed
         // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(filtro);
+        chooser.setDialogTitle("Seleccione un archivo HTML");
+        chooser.setMultiSelectionEnabled(false);
         
+
+           
     }//GEN-LAST:event_abrirBtnActionPerformed
 
     private void generarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarBtnActionPerformed
@@ -157,6 +173,11 @@ public class VistaAnalizador extends javax.swing.JFrame {
         Licencia lic = new Licencia(this, false);
         lic.setVisible(true);
     }//GEN-LAST:event_aboutBtnActionPerformed
+
+    private void imprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_imprimirBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,6 +213,10 @@ public class VistaAnalizador extends javax.swing.JFrame {
             }
         });
     }
+    
+    //Variables propias
+    private AnalizadorControlador yucalex;
+    private ExtensionFileFilter filtro;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutBtn;
     private javax.swing.JButton abrirBtn;

@@ -12,6 +12,13 @@ import model.Analizador;
 public class AnalizadorControlador {
     
     Analizador yucalex;
+    String rutaArchivo;
+    
+    public AnalizadorControlador(String ruta){
+        rutaArchivo = ruta;
+        yucalex = new Analizador(rutaArchivo);
+    }
+    
     
     
 }

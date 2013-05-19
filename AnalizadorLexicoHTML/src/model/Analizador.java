@@ -2,9 +2,9 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.util.*;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.*;
 
 public class Analizador {
 
@@ -13,9 +13,11 @@ public class Analizador {
     private String ruta;
     private StringTokenizer token;
     private Etiquetas et;
+    private ArrayList<String> lista;
 
     public Analizador(String ruta) {
         this.ruta = ruta;
+        this.lista = new ArrayList<>();
     }
 
     public String getRuta() {
@@ -36,7 +38,7 @@ public class Analizador {
 
     public void analizador() throws FileNotFoundException, IOException {
 
-        String linea, contenido = "";
+        String linea, contenido = "", lexema;
         this.fr = new FileReader(this.ruta);
         this.br = new BufferedReader(this.fr);
 
@@ -47,7 +49,8 @@ public class Analizador {
         this.token = new StringTokenizer(contenido);
 
         while (token.hasMoreTokens()) {
-            this.et.validarEtiqueta(token.nextToken());
+            lexema = this.et.validarEtiqueta(token.nextToken());
+            lista.add(lexema);
         }
 
         fr.close();

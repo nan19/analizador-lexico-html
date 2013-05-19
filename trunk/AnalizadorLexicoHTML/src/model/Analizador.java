@@ -17,7 +17,7 @@ public class Analizador {
    private BufferedReader br = null;
    private String contenido = "";
    private String ruta;
-   StringTokenizer token;
+   private StringTokenizer token;
    private Etiquetas et;
    
    

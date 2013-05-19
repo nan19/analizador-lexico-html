@@ -22,6 +22,10 @@ public class Analizador {
         this.ruta = ruta;
         this.lista = new ArrayList<>();
     }
+    
+    public Analizador(){
+        
+    }
 
     public String getRuta() {
         return this.ruta;
@@ -39,7 +43,7 @@ public class Analizador {
         this.token = token;
     }
 
-    public void analizador() throws FileNotFoundException, IOException {
+    public String analizarLex() throws FileNotFoundException, IOException {
 
         String linea, contenido = "", lexema;
         this.fr = new FileReader(this.ruta);
@@ -58,9 +62,11 @@ public class Analizador {
 
         fr.close();
         br.close();
+        
+        return parseString(lista);
     }
     
-    public String leerArchivo(String ruta) throws FileNotFoundException, IOException{
+    public String leerArchivo() throws FileNotFoundException, IOException{
         String contenido="", linea;
         this.fr = new FileReader(ruta);
         this.br = new BufferedReader(fr);
@@ -85,5 +91,15 @@ public class Analizador {
         pw.close();
         bw.close();
         fw.close();
+    }
+    
+    private String parseString(ArrayList<String> array){
+        String parsed="";
+        
+        for(int i=0; i<array.size();i++){
+            parsed += array.get(i) + "\n";
+        }
+        
+        return parsed;
     }
 }

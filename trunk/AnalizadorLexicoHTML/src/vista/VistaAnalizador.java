@@ -198,7 +198,15 @@ public class VistaAnalizador extends javax.swing.JFrame {
 
     private void imprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirBtnActionPerformed
         // TODO add your handling code here:
-        
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+        chooser.setFileFilter(new ExtensionFileFilter("Archivo lexico", "lex"));
+        int showSaveDialog = chooser.showSaveDialog(this);
+        try {
+            yucalexControl.imprimirLex(chooser.getSelectedFile().getPath(), lexTextArea.getText());
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_imprimirBtnActionPerformed
 
     /**

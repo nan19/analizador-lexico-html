@@ -1,5 +1,4 @@
 package model;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -17,6 +16,7 @@ public class Analizador {
     private StringTokenizer token;
  
 
+
     public Analizador(String ruta) {
         this.ruta = ruta;
        
@@ -26,9 +26,15 @@ public class Analizador {
         
     }
 
+/**
+ *
+ * @author ArandiLopez
+ */
+
     public String getRuta() {
         return this.ruta;
     }
+
 
     public void setRuta(String ruta) {
         this.ruta = ruta;
@@ -52,7 +58,7 @@ public class Analizador {
             contenido += linea + "\n";
         }
 
-        this.token = new StringTokenizer(contenido);
+        this.token = new StringTokenizer(contenido,"<>");
 
         while (token.hasMoreTokens()) {
             lexema += et.validarEtiqueta(token.nextToken()) + "\n";

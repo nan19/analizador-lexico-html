@@ -25,6 +25,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
         initComponents();
         yucalexControl = new AnalizadorControlador();
         filtro = new ExtensionFileFilter("Archivo HTML", "html");
+        
     }
 
     /**

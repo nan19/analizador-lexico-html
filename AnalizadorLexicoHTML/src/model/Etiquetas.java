@@ -9,5 +9,45 @@ package model;
  * @author ArandiLopez
  */
 public class Etiquetas {
-    
+
+    public String validarEtiqueta(String validar) {
+        String etiqueta = "";
+        String lexema = "";
+        switch (validar) {
+            case "html":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de apertura de inicio de contenido de pagina";
+                break;
+            case "/hmtl":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de fin de inicio de contenido de pagina";
+                break;
+            case "head":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de apertura de cabecera de pagina";
+                break;
+            case "/head":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de fin de cabecera de pagina";
+                break;
+            case "tile":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de inicio de titulo de pagina";
+                break;
+            case "/title":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de fin de titulo pagina";
+                break;
+            case "body":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de inicio de cuerpo de pagina";
+                break;
+            case "/body":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de apertura de cabecera de pagina";
+                break;
+
+        }
+        return etiqueta + " - " + lexema;
+    }
 }

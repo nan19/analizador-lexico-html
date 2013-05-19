@@ -9,14 +9,18 @@ package model;
  * @author ArandiLopez
  */
 public class Etiquetas {
-
-    private static Etiquetas INSTANCE = new Etiquetas();
-
-    private Etiquetas() {
-    }
-
-    public static Etiquetas getINSTANCE() {
-        return INSTANCE;
+//
+//    private static Etiquetas INSTANCE = new Etiquetas();
+//
+//    private Etiquetas() {
+//    }
+//
+//    public static Etiquetas getINSTANCE() {
+//        return INSTANCE;
+//    }
+    
+    public Etiquetas(){
+        
     }
 
     public String validarEtiqueta(String validar) {

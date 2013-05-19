@@ -49,7 +49,6 @@ public class VistaAnalizador extends javax.swing.JFrame {
 
         lexTextArea.setColumns(20);
         lexTextArea.setRows(5);
-        lexTextArea.setEnabled(false);
         jScrollPane1.setViewportView(lexTextArea);
 
         abrirBtn.setText("Abrir HTML");

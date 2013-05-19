@@ -58,10 +58,13 @@ public class Analizador {
             contenido += linea + "\n";
         }
 
-        this.token = new StringTokenizer(contenido,"<>");
+        this.token = new StringTokenizer(contenido,"<>\n");
 
         while (token.hasMoreTokens()) {
-            lexema += Etiquetas.getINSTANCE().validarEtiqueta(token.nextToken()) + "\n";
+            String tokenizado = token.nextToken();
+            if(!(tokenizado.equals("") || tokenizado.equals(" "))){
+                lexema += Etiquetas.getINSTANCE().validarEtiqueta(tokenizado) + "\n";
+            }
         }
 
         fr.close();

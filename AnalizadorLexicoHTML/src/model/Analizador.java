@@ -64,6 +64,9 @@ public class Analizador {
        while (token.hasMoreTokens()) {
            this.et.validarEtiqueta(token.nextToken());
        }
+       
+       fr.close();
+       br.close();
    }
    
    

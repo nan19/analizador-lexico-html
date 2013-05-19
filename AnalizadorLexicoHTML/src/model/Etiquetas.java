@@ -143,6 +143,14 @@ public class Etiquetas {
                 etiqueta = "<" + validar + ">";
                 lexema = "Etiqueta de fin de enlace a otro elemento";
                 break;
+            case "strong":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de inicio de texto fuerte";
+                break;
+            case "/strong":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de fin de enlace a otro elemento";
+                break;
             default:
                 etiqueta = validar;
                 lexema = "Esto es texto";

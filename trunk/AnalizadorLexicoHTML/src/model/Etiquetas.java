@@ -40,7 +40,7 @@ public class Etiquetas {
                 etiqueta = "<" + validar + ">";
                 lexema = "Etiqueta de fin de cabecera de pagina";
                 break;
-            case "tile":
+            case "title":
                 etiqueta = "<" + validar + ">";
                 lexema = "Etiqueta de inicio de titulo de pagina";
                 break;
@@ -151,6 +151,14 @@ public class Etiquetas {
             case "/p":
                 etiqueta = "<" + validar + ">";
                 lexema = "Etiqueta de fin de parrafo";
+                break;
+            case "strong":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de inicio de texto fuerte";
+                break;
+            case "/strong":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de fin de texto fuerte";
                 break;
             default:
                 etiqueta = validar;

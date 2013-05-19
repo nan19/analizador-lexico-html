@@ -163,7 +163,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setFileFilter(filtro);
-        chooser.setDialogTitle("Seleccione un archivo HTML");
+        chooser.setDialogTitle("Seleccione un archivo HTML *.html");
         chooser.setMultiSelectionEnabled(false);
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int showOpenDialog = chooser.showOpenDialog(this);
@@ -201,7 +201,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-        chooser.setFileFilter(new ExtensionFileFilter("Archivo lexico", "lex"));
+        chooser.setFileFilter(new ExtensionFileFilter("Archivo lexico *.lex", "lex"));
         int showSaveDialog = chooser.showSaveDialog(this);
         try {
             yucalexControl.imprimirLex(chooser.getSelectedFile().getPath(), lexTextArea.getText());

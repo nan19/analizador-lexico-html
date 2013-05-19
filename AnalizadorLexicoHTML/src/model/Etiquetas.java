@@ -9,7 +9,17 @@ package model;
  * @author ArandiLopez
  */
 public class Etiquetas {
-
+    
+    private static Etiquetas INSTANCE = new Etiquetas();
+    
+    private Etiquetas(){
+        
+    }
+    
+    public static Etiquetas getINSTANCE(){
+        return INSTANCE;
+    }
+    
     public String validarEtiqueta(String validar) {
         String etiqueta = "";
         String lexema = "";

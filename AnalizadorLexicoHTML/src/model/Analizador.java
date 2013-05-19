@@ -49,7 +49,7 @@ public class Analizador {
     }
 
     public String analizarLex() throws FileNotFoundException, IOException {
-        Etiquetas et = new Etiquetas();
+        
         String linea, contenido = "", lexema="";
         this.fr = new FileReader(this.ruta);
         this.br = new BufferedReader(this.fr);
@@ -61,7 +61,7 @@ public class Analizador {
         this.token = new StringTokenizer(contenido,"<>");
 
         while (token.hasMoreTokens()) {
-            lexema += et.validarEtiqueta(token.nextToken()) + "\n";
+            lexema += Etiquetas.getINSTANCE().validarEtiqueta(token.nextToken()) + "\n";
         }
 
         fr.close();

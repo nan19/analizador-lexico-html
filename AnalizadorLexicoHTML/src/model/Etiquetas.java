@@ -180,6 +180,6 @@ public class Etiquetas {
                 lexema = "Esto es texto";
                 break;*/
 
-        return lexema;
+        return (etiqueta + " - " + lexema);
     }
 }

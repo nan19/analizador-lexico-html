@@ -160,6 +160,14 @@ public class Etiquetas {
                 etiqueta = "<" + validar + ">";
                 lexema = "Etiqueta de fin de texto fuerte";
                 break;
+            case "img":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de inicio de imagen";
+                break;
+            case "/img":
+                etiqueta = "<" + validar + ">";
+                lexema = "Etiqueta de fin de imagen";
+                break;
             default:
                 etiqueta = validar;
                 lexema = "Esto es texto";

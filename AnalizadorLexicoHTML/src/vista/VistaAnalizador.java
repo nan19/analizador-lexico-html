@@ -7,7 +7,6 @@ package vista;
 import controlador.AnalizadorControlador;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import javax.swing.JFileChooser;
 import javax.swing.*;
 import model.ExtensionFileFilter;
 

@@ -195,6 +195,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+        chooser.setDialogTitle("Guardar Archivo tipo lex");
         chooser.setFileFilter(new ExtensionFileFilter("Archivo lexico *.lex", "lex"));
         int showSaveDialog = chooser.showSaveDialog(this);
         try {

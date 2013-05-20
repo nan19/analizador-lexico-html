@@ -7,11 +7,10 @@ package vista;
 import controlador.AnalizadorControlador;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.*;
 import model.ExtensionFileFilter;
+
 /**
  *
  * @author ArandiLopez
@@ -172,16 +171,19 @@ public class VistaAnalizador extends javax.swing.JFrame {
     }//GEN-LAST:event_abrirBtnActionPerformed
 
     private void generarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarBtnActionPerformed
-        try {
-            // TODO add your handling code here:
-
-            yucalexControl.analizar(lexTextArea);
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+        if (!(htmlTextArea.getText().equals(""))) {
+            try {
+                // TODO add your handling code here:
+                yucalexControl.analizar(lexTextArea);
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        
+        else{
+            JOptionPane.showMessageDialog(this, "Cargue primero un html.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_generarBtnActionPerformed
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
@@ -197,7 +199,11 @@ public class VistaAnalizador extends javax.swing.JFrame {
         chooser.setFileFilter(new ExtensionFileFilter("Archivo lexico *.lex", "lex"));
         int showSaveDialog = chooser.showSaveDialog(this);
         try {
-            yucalexControl.imprimirLex(chooser.getSelectedFile().getPath(), lexTextArea.getText());
+            if (!(lexTextArea.getText().equals(""))) {
+                yucalexControl.imprimirLex(chooser.getSelectedFile().getPath(), lexTextArea.getText());
+            } else {
+                JOptionPane.showMessageDialog(this, "No se a analizado el HTML", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -238,7 +244,6 @@ public class VistaAnalizador extends javax.swing.JFrame {
             }
         });
     }
-    
     //Variables propias
     private AnalizadorControlador yucalexControl;
     private ExtensionFileFilter filtro;

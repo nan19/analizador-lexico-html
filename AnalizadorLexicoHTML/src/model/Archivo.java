@@ -12,6 +12,9 @@ import javax.swing.JFileChooser;
 
 public class Archivo {
 
+    /**
+     * Constructor vacio y privado
+     */
     private Archivo() {
     }
 

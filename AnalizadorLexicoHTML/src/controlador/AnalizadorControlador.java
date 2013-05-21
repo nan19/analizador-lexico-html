@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JTextArea;
 import model.Analizador;
+import model.Archivo;
 
 public class AnalizadorControlador {
 
@@ -15,24 +16,14 @@ public class AnalizadorControlador {
     }
 
     /**
-     * Método que coloca la ruta del archivo
-     *
-     * @param ruta
-     */
-    public void setRutaArchivo(String ruta) {
-        this.rutaArchivo = ruta;
-        yucalex.setRuta(rutaArchivo);
-    }
-
-    /**
      * Método que coloca el contenido del analisis en pantalla
      *
      * @param textArea
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void analizar(JTextArea textArea) throws FileNotFoundException, IOException {
-        textArea.setText(yucalex.analizarLex());
+    public void analizar(JTextArea textArea, String contenido) throws FileNotFoundException, IOException {
+        textArea.setText(yucalex.analizarLex(contenido));
     }
 
     /**
@@ -42,8 +33,8 @@ public class AnalizadorControlador {
      * @param contenido
      * @throws IOException
      */
-    public void imprimirLex(String ruta, String contenido) throws IOException {
-        yucalex.imprimirArchivo(ruta, contenido);
+    public void guardarArchivo(String tipoArchivo, String contenido) throws IOException {
+        Archivo.getINSTANCIA().guardarArchivo(tipoArchivo, contenido);
     }
 
     /**
@@ -53,12 +44,13 @@ public class AnalizadorControlador {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void abrirArchivo(JTextArea textArea) throws FileNotFoundException, IOException {
-        textArea.setText(yucalex.leerArchivo());
+    public void abrirArchivo(JTextArea textArea, String tipoArchivo) throws FileNotFoundException, IOException {
+        String rutaArchivo = Archivo.getINSTANCIA().abrirArchivo(tipoArchivo);
+        textArea.setText(Archivo.getINSTANCIA().leerArchivo(rutaArchivo));
     }
     /**
      * Atributos privados
      */
     private Analizador yucalex = null;
-    private String rutaArchivo = "";
+    
 }

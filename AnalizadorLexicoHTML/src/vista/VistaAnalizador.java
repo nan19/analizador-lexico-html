@@ -1,10 +1,8 @@
 package vista;
 
 import controlador.AnalizadorControlador;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import javax.swing.*;
-import model.ExtensionFileFilter;
+import javax.swing.JOptionPane;
+import model.Archivo;
 
 public class VistaAnalizador extends javax.swing.JFrame {
 
@@ -14,9 +12,6 @@ public class VistaAnalizador extends javax.swing.JFrame {
     public VistaAnalizador() {
         initComponents();
         yucalexControl = new AnalizadorControlador();
-        filtro = new ExtensionFileFilter("Archivo HTML", "html");
-
-
     }
 
     /**
@@ -32,16 +27,17 @@ public class VistaAnalizador extends javax.swing.JFrame {
         htmlTextArea = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         lexTextArea = new javax.swing.JTextArea();
-        abrirBtn = new javax.swing.JButton();
-        generarBtn = new javax.swing.JButton();
+        abrirHTMLBtn = new javax.swing.JButton();
+        generarAnalisisBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        imprimirBtn = new javax.swing.JButton();
+        guardarLexicoBtn = new javax.swing.JButton();
         aboutBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        abrirMenuItem = new javax.swing.JMenuItem();
+        abrirHTMLMenuItem = new javax.swing.JMenuItem();
+        abrirLexMenuItem = new javax.swing.JMenuItem();
         guardarHTMLMenuItem = new javax.swing.JMenuItem();
         guardarLEXMenuItem = new javax.swing.JMenuItem();
 
@@ -60,21 +56,21 @@ public class VistaAnalizador extends javax.swing.JFrame {
         lexTextArea.setRows(5);
         jScrollPane1.setViewportView(lexTextArea);
 
-        abrirBtn.setText("Abrir HTML");
-        abrirBtn.setToolTipText("Abrir un archivo Html para analizar");
-        abrirBtn.setName("abrirBtn"); // NOI18N
-        abrirBtn.addActionListener(new java.awt.event.ActionListener() {
+        abrirHTMLBtn.setText("Abrir HTML");
+        abrirHTMLBtn.setToolTipText("Abrir un archivo Html para analizar");
+        abrirHTMLBtn.setName("abrirHTMLBtn"); // NOI18N
+        abrirHTMLBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abrirBtnActionPerformed(evt);
+                abrirHTMLBtnActionPerformed(evt);
             }
         });
 
-        generarBtn.setText("Generar Analisis");
-        generarBtn.setToolTipText("Iniciar el analisis lexico");
-        generarBtn.setName("generarBtn"); // NOI18N
-        generarBtn.addActionListener(new java.awt.event.ActionListener() {
+        generarAnalisisBtn.setText("Generar Analisis");
+        generarAnalisisBtn.setToolTipText("Iniciar el analisis lexico");
+        generarAnalisisBtn.setName("generarAnalisisBtn"); // NOI18N
+        generarAnalisisBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generarBtnActionPerformed(evt);
+                generarAnalisisBtnActionPerformed(evt);
             }
         });
 
@@ -84,11 +80,11 @@ public class VistaAnalizador extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/text3230-1.png"))); // NOI18N
         jLabel2.setName("logoLb"); // NOI18N
 
-        imprimirBtn.setText("Generar Lex");
-        imprimirBtn.setToolTipText("Genera un archivo con la salida del analizador lexico");
-        imprimirBtn.addActionListener(new java.awt.event.ActionListener() {
+        guardarLexicoBtn.setText("Guardad Lex");
+        guardarLexicoBtn.setToolTipText("Genera un archivo con la salida del analizador lexico");
+        guardarLexicoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imprimirBtnActionPerformed(evt);
+                guardarLexicoBtnActionPerformed(evt);
             }
         });
 
@@ -103,14 +99,23 @@ public class VistaAnalizador extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
-        abrirMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        abrirMenuItem.setText("Abrir HTML");
-        abrirMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        abrirHTMLMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        abrirHTMLMenuItem.setText("Abrir HTML");
+        abrirHTMLMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abrirMenuItemActionPerformed(evt);
+                abrirHTMLMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(abrirMenuItem);
+        jMenu1.add(abrirHTMLMenuItem);
+
+        abrirLexMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        abrirLexMenuItem.setText("Abrir Archivo Lexico");
+        abrirLexMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrirLexMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(abrirLexMenuItem);
 
         guardarHTMLMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         guardarHTMLMenuItem.setText("Guardar HTML");
@@ -148,9 +153,9 @@ public class VistaAnalizador extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(abrirBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(generarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(imprimirBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(abrirHTMLBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(generarAnalisisBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(guardarLexicoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -169,11 +174,11 @@ public class VistaAnalizador extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(abrirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(abrirHTMLBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
-                        .addComponent(generarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(generarAnalisisBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
-                        .addComponent(imprimirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(guardarLexicoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,39 +196,25 @@ public class VistaAnalizador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void abrirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirBtnActionPerformed
-        // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(filtro);
-        chooser.setDialogTitle("Seleccione un archivo HTML *.html");
-        chooser.setMultiSelectionEnabled(false);
-        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int showOpenDialog = chooser.showOpenDialog(this);
-
-        yucalexControl.setRutaArchivo(chooser.getSelectedFile().getPath());
+    private void abrirHTMLBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirHTMLBtnActionPerformed
         try {
-            yucalexControl.abrirArchivo(htmlTextArea);
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            yucalexControl.abrirArchivo(htmlTextArea, Archivo.Ext_HTML);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
         }
-    }//GEN-LAST:event_abrirBtnActionPerformed
+    }//GEN-LAST:event_abrirHTMLBtnActionPerformed
 
-    private void generarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarBtnActionPerformed
-        if (!(htmlTextArea.getText().equals(""))) {
-            try {
-                // TODO add your handling code here:
-                yucalexControl.analizar(lexTextArea);
-            } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Cargue primero un html.", "ERROR", JOptionPane.ERROR_MESSAGE);
+    private void generarAnalisisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarAnalisisBtnActionPerformed
+        if(!(htmlTextArea.getText().equals(""))){
+             try {
+                yucalexControl.analizar(lexTextArea, htmlTextArea.getText());
+             } catch (Exception e) {
+                 JOptionPane.showMessageDialog(this, e);
+             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Abra un archivo HTML primero");
         }
-    }//GEN-LAST:event_generarBtnActionPerformed
+    }//GEN-LAST:event_generarAnalisisBtnActionPerformed
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
         // TODO add your handling code here:
@@ -231,83 +222,52 @@ public class VistaAnalizador extends javax.swing.JFrame {
         lic.setVisible(true);
     }//GEN-LAST:event_aboutBtnActionPerformed
 
-    private void imprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirBtnActionPerformed
-        // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-        chooser.setDialogTitle("Guardar Archivo tipo lex");
-        chooser.setFileFilter(new ExtensionFileFilter("Archivo lexico *.lex", "lex"));
-        int showSaveDialog = chooser.showSaveDialog(this);
+    private void guardarLexicoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarLexicoBtnActionPerformed
         try {
-            if (!(lexTextArea.getText().equals(""))) {
-                yucalexControl.imprimirLex(chooser.getSelectedFile().getPath(), lexTextArea.getText());
-                JOptionPane.showMessageDialog(this, "Archivo Guardado", "", JOptionPane.OK_OPTION);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se a analizado el HTML", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            yucalexControl.guardarArchivo(Archivo.Ext_LEX, lexTextArea.getText());
+            JOptionPane.showMessageDialog(this, "Archivo Guardado", null, JOptionPane.OK_OPTION);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
         }
-    }//GEN-LAST:event_imprimirBtnActionPerformed
+    }//GEN-LAST:event_guardarLexicoBtnActionPerformed
 
-    private void abrirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirMenuItemActionPerformed
+    private void abrirHTMLMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirHTMLMenuItemActionPerformed
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(filtro);
-        chooser.setDialogTitle("Seleccione un archivo HTML *.html");
-        chooser.setMultiSelectionEnabled(false);
-        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int showOpenDialog = chooser.showOpenDialog(this);
-
-        yucalexControl.setRutaArchivo(chooser.getSelectedFile().getPath());
         try {
-            yucalexControl.abrirArchivo(htmlTextArea);
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            yucalexControl.abrirArchivo(htmlTextArea, Archivo.Ext_HTML);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
         }
-    }//GEN-LAST:event_abrirMenuItemActionPerformed
+    }//GEN-LAST:event_abrirHTMLMenuItemActionPerformed
 
     private void guardarHTMLMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarHTMLMenuItemActionPerformed
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-        chooser.setDialogTitle("Guardar Archivo HTML");
-        chooser.setFileFilter(new ExtensionFileFilter("Archivo HTML *.html", "html"));
-        int showSaveDialog = chooser.showSaveDialog(this);
         try {
-            if (!(htmlTextArea.getText().equals(""))) {
-                yucalexControl.imprimirLex(chooser.getSelectedFile().getPath(), htmlTextArea.getText());
-                JOptionPane.showMessageDialog(this, "Archivo Guardado", "", JOptionPane.OK_OPTION);
-            } else {
-                JOptionPane.showMessageDialog(this, "Escriba Codido HTML", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            yucalexControl.guardarArchivo(Archivo.Ext_HTML, htmlTextArea.getText());
+            JOptionPane.showMessageDialog(this, "Archivo Guardado", null, JOptionPane.OK_OPTION);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
         }
-
-        yucalexControl.setRutaArchivo(chooser.getSelectedFile().getPath());
     }//GEN-LAST:event_guardarHTMLMenuItemActionPerformed
 
     private void guardarLEXMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarLEXMenuItemActionPerformed
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-        chooser.setDialogTitle("Guardar Archivo tipo lex");
-        chooser.setFileFilter(new ExtensionFileFilter("Archivo lexico *.lex", "lex"));
-        int showSaveDialog = chooser.showSaveDialog(this);
         try {
-            if (!(lexTextArea.getText().equals(""))) {
-                yucalexControl.imprimirLex(chooser.getSelectedFile().getPath(), lexTextArea.getText());
-                JOptionPane.showMessageDialog(this, "Archivo Guardado", "", JOptionPane.OK_OPTION);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se a analizado el HTML", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+            yucalexControl.guardarArchivo(Archivo.Ext_LEX, lexTextArea.getText());
+            JOptionPane.showMessageDialog(this, "Archivo Guardado", null, JOptionPane.OK_OPTION);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_guardarLEXMenuItemActionPerformed
+
+    private void abrirLexMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirLexMenuItemActionPerformed
+        // TODO add your handling code here:
+        try {
+            yucalexControl.abrirArchivo(lexTextArea, Archivo.Ext_LEX);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_abrirLexMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,16 +306,16 @@ public class VistaAnalizador extends javax.swing.JFrame {
     }
     //Variables propias
     private AnalizadorControlador yucalexControl;
-    private ExtensionFileFilter filtro;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutBtn;
-    private javax.swing.JButton abrirBtn;
-    private javax.swing.JMenuItem abrirMenuItem;
-    private javax.swing.JButton generarBtn;
+    private javax.swing.JButton abrirHTMLBtn;
+    private javax.swing.JMenuItem abrirHTMLMenuItem;
+    private javax.swing.JMenuItem abrirLexMenuItem;
+    private javax.swing.JButton generarAnalisisBtn;
     private javax.swing.JMenuItem guardarHTMLMenuItem;
     private javax.swing.JMenuItem guardarLEXMenuItem;
+    private javax.swing.JButton guardarLexicoBtn;
     private javax.swing.JTextArea htmlTextArea;
-    private javax.swing.JButton imprimirBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -9,7 +9,7 @@
             <Property name="text" type="java.lang.String" value="Archivo"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="abrirMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="abrirHTMLMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+A"/>
@@ -17,7 +17,18 @@
                 <Property name="text" type="java.lang.String" value="Abrir HTML"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abrirMenuItemActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abrirHTMLMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="abrirLexMenuItem">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+O"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Abrir Archivo Lexico"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abrirLexMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="guardarHTMLMenuItem">
@@ -85,9 +96,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="abrirBtn" max="32767" attributes="0"/>
-                          <Component id="generarBtn" max="32767" attributes="0"/>
-                          <Component id="imprimirBtn" max="32767" attributes="0"/>
+                          <Component id="abrirHTMLBtn" max="32767" attributes="0"/>
+                          <Component id="generarAnalisisBtn" max="32767" attributes="0"/>
+                          <Component id="guardarLexicoBtn" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -113,11 +124,11 @@
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="abrirBtn" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="abrirHTMLBtn" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="generarBtn" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="generarAnalisisBtn" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="imprimirBtn" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="guardarLexicoBtn" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -174,24 +185,24 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="abrirBtn">
+    <Component class="javax.swing.JButton" name="abrirHTMLBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Abrir HTML"/>
         <Property name="toolTipText" type="java.lang.String" value="Abrir un archivo Html para analizar"/>
-        <Property name="name" type="java.lang.String" value="abrirBtn" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="abrirHTMLBtn" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abrirBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abrirHTMLBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="generarBtn">
+    <Component class="javax.swing.JButton" name="generarAnalisisBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Generar Analisis"/>
         <Property name="toolTipText" type="java.lang.String" value="Iniciar el analisis lexico"/>
-        <Property name="name" type="java.lang.String" value="generarBtn" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="generarAnalisisBtn" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarAnalisisBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -210,13 +221,13 @@
         <Property name="name" type="java.lang.String" value="logoLb" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="imprimirBtn">
+    <Component class="javax.swing.JButton" name="guardarLexicoBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Generar Lex"/>
+        <Property name="text" type="java.lang.String" value="Guardad Lex"/>
         <Property name="toolTipText" type="java.lang.String" value="Genera un archivo con la salida del analizador lexico"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imprimirBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarLexicoBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="aboutBtn">

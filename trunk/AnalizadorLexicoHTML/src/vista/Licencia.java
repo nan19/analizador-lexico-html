@@ -1,19 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
-/**
- *
- * @author ArandiLopez
- */
 public class Licencia extends javax.swing.JDialog {
 
     /**
      * Creates new form Licencia
+     *
      * @param parent
-     * @param modal  
+     * @param modal
      */
     public Licencia(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -165,11 +158,9 @@ public class Licencia extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     /**
      * @param args the command line arguments
      */
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

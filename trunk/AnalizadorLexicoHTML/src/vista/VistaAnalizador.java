@@ -1,20 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import controlador.AnalizadorControlador;
-import java.awt.event.InputEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.*;
 import model.ExtensionFileFilter;
 
-/**
- *
- * @author ArandiLopez
- */
 public class VistaAnalizador extends javax.swing.JFrame {
 
     /**
@@ -24,8 +15,8 @@ public class VistaAnalizador extends javax.swing.JFrame {
         initComponents();
         yucalexControl = new AnalizadorControlador();
         filtro = new ExtensionFileFilter("Archivo HTML", "html");
-        
-        
+
+
     }
 
     /**
@@ -229,8 +220,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "Cargue primero un html.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_generarBtnActionPerformed
@@ -296,7 +286,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex, "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         yucalexControl.setRutaArchivo(chooser.getSelectedFile().getPath());
     }//GEN-LAST:event_guardarHTMLMenuItemActionPerformed
 

@@ -1,42 +1,64 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JTextArea;
 import model.Analizador;
-/**
- *
- * @author ArandiLopez
- */
+
 public class AnalizadorControlador {
-    
-    Analizador yucalex;
-    String rutaArchivo;
-    
-    public AnalizadorControlador(){
+
+    /**
+     * Constructor que genera una instancia de analizador
+     */
+    public AnalizadorControlador() {
         yucalex = new Analizador();
     }
-    
-    public void setRutaArchivo(String ruta){
+
+    /**
+     * Método que coloca la ruta del archivo
+     *
+     * @param ruta
+     */
+    public void setRutaArchivo(String ruta) {
         this.rutaArchivo = ruta;
         yucalex.setRuta(rutaArchivo);
     }
-    
-    public void analizar(JTextArea textArea) throws FileNotFoundException, IOException{
+
+    /**
+     * Método que coloca el contenido del analisis en pantalla
+     *
+     * @param textArea
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void analizar(JTextArea textArea) throws FileNotFoundException, IOException {
         textArea.setText(yucalex.analizarLex());
     }
-    
-    public void imprimirLex(String ruta, String contenido) throws IOException{
+
+    /**
+     * Método que guarda el archivo lex
+     *
+     * @param ruta
+     * @param contenido
+     * @throws IOException
+     */
+    public void imprimirLex(String ruta, String contenido) throws IOException {
         yucalex.imprimirArchivo(ruta, contenido);
     }
-    
-    public void abrirArchivo(JTextArea textArea) throws FileNotFoundException, IOException{
+
+    /**
+     * Método que lee el archivo y lo imprime en pantalla
+     *
+     * @param textArea
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void abrirArchivo(JTextArea textArea) throws FileNotFoundException, IOException {
         textArea.setText(yucalex.leerArchivo());
     }
-    
-    
+    /**
+     * Atributos privados
+     */
+    private Analizador yucalex = null;
+    private String rutaArchivo = "";
 }

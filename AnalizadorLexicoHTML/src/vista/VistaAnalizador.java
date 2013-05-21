@@ -181,7 +181,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(imprimirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(aboutBtn))

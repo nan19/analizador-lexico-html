@@ -27,7 +27,7 @@ public class AnalizadorControlador {
     }
 
     /**
-     * Método que guarda el archivo lex
+     * Método que guarda un archivo
      *
      * @param ruta
      * @param contenido
@@ -45,8 +45,7 @@ public class AnalizadorControlador {
      * @throws IOException
      */
     public void abrirArchivo(JTextArea textArea, String tipoArchivo) throws FileNotFoundException, IOException {
-        String rutaArchivo = Archivo.getINSTANCIA().abrirArchivo(tipoArchivo);
-        textArea.setText(Archivo.getINSTANCIA().leerArchivo(rutaArchivo));
+        textArea.setText(Archivo.getINSTANCIA().abrirArchivo(tipoArchivo));
     }
     /**
      * Atributos privados

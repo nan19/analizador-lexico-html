@@ -1,24 +1,28 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-/**
- *
- * @author ArandiLopez
- */
 public class Etiquetas {
 
-    private static Etiquetas INSTANCE = new Etiquetas();
-
+    /**
+     * constructor vacio
+     */
     private Etiquetas() {
     }
 
+    /**
+     * Devuelve una instancia de etiquetas usando el patron de diseño Singleton
+     *
+     * @return
+     */
     public static Etiquetas getINSTANCE() {
         return INSTANCE;
     }
 
+    /**
+     * Método para identificar el tipo de etiqueta
+     *
+     * @param validar
+     * @return
+     */
     public String validarEtiqueta(String validar) {
         String etiqueta = "";
         String lexema = "";
@@ -175,4 +179,5 @@ public class Etiquetas {
         }
         return (etiqueta + " - " + lexema);
     }//fin de validar
+    private static Etiquetas INSTANCE = new Etiquetas();
 }//fin de la clase

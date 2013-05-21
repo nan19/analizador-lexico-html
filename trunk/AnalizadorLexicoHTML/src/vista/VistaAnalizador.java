@@ -5,6 +5,7 @@
 package vista;
 
 import controlador.AnalizadorControlador;
+import java.awt.event.InputEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.*;
@@ -23,7 +24,8 @@ public class VistaAnalizador extends javax.swing.JFrame {
         initComponents();
         yucalexControl = new AnalizadorControlador();
         filtro = new ExtensionFileFilter("Archivo HTML", "html");
-        jScrollPane2.setRowHeaderView(null);
+        
+        
     }
 
     /**
@@ -46,8 +48,6 @@ public class VistaAnalizador extends javax.swing.JFrame {
         imprimirBtn = new javax.swing.JButton();
         aboutBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         abrirMenuItem = new javax.swing.JMenuItem();
@@ -110,10 +110,9 @@ public class VistaAnalizador extends javax.swing.JFrame {
 
         jLabel3.setText("Agregue o Edite Codigo HTML, Guarde y Genere el Analisis");
 
-        jScrollPane3.setViewportView(jTextPane1);
-
         jMenu1.setText("Archivo");
 
+        abrirMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         abrirMenuItem.setText("Abrir HTML");
         abrirMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +121,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
         });
         jMenu1.add(abrirMenuItem);
 
+        guardarHTMLMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         guardarHTMLMenuItem.setText("Guardar HTML");
         guardarHTMLMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +130,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
         });
         jMenu1.add(guardarHTMLMenuItem);
 
+        guardarLEXMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         guardarLEXMenuItem.setText("Guardar Archivo lex");
         guardarLEXMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,9 +148,7 @@ public class VistaAnalizador extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,10 +189,8 @@ public class VistaAnalizador extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2)))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -373,8 +370,6 @@ public class VistaAnalizador extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextArea lexTextArea;
     // End of variables declaration//GEN-END:variables
 }

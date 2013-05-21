@@ -16,7 +16,7 @@ public class Archivo {
     }
 
     /**
-     *
+     *  Metodo que devuelve la instancia unica de Archivo usando el patron Singleton
      * @return
      */
     public static Archivo getINSTANCIA() {
@@ -24,13 +24,13 @@ public class Archivo {
     }
 
     /**
-     *
+     *  Lee un archivo y devuelve su contenido
      * @param rutaArchivo
      * @return
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public String leerArchivo(String rutaArchivo) throws FileNotFoundException, IOException {
+    private String leerArchivo(String rutaArchivo) throws FileNotFoundException, IOException {
         String contenido = "", linea;
         FileReader fr = new FileReader(rutaArchivo);
         BufferedReader br = new BufferedReader(fr);
@@ -46,12 +46,12 @@ public class Archivo {
     }
 
     /**
-     *
+     *  Escribe un archivo de texto a base de su contenido
      * @param rutaArchivo
      * @param contenidoArchivo
      * @throws IOException
      */
-    public void escribirArchivo(String rutaArchivo, String contenidoArchivo) throws IOException {
+    private void escribirArchivo(String rutaArchivo, String contenidoArchivo) throws IOException {
         FileWriter fw = new FileWriter(rutaArchivo);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter pw = new PrintWriter(bw);
@@ -64,11 +64,11 @@ public class Archivo {
     }
 
     /**
-     *
+     *  Selecciona un archivo y devuelve su contenido
      * @param tipoArchivo
      * @return
      */
-    public String abrirArchivo(String tipoArchivo) {
+    public String abrirArchivo(String tipoArchivo) throws FileNotFoundException, IOException {
         String rutaArchivo = "";
         JFileChooser chooser = new JFileChooser();
         if(tipoArchivo.equals(Ext_HTML)){
@@ -85,11 +85,11 @@ public class Archivo {
 
         rutaArchivo = chooser.getSelectedFile().getPath();
 
-        return rutaArchivo;
+        return leerArchivo(rutaArchivo);
     }
 
     /**
-     *
+     *  Guarda o crea un nuevo archivo con el contenido asigando
      * @param tipoArchivo
      * @param contenido
      * @throws IOException
@@ -112,28 +112,20 @@ public class Archivo {
         escribirArchivo(rutaArchivo, contenido);
     }
     private static Archivo INSTANCIA = new Archivo();
+    
+    private static String ABRIR_HTML = "Seleccione un Archivo HTML";
+    
+    private static String ABRIR_LEX = "Seleccione un Archivo Lex";
+    
+    private static String GUARDAR_HTML = "Guardar un Archivo HTML";
+    
+    private static String GUARDAR_LEX = "Guardar un Archivo Lex";
     /**
-     *
-     */
-    public static String ABRIR_HTML = "Seleccione un Archivo HTML";
-    /**
-     *
-     */
-    public static String ABRIR_LEX = "Seleccione un Archivo Lex";
-    /**
-     *
-     */
-    public static String GUARDAR_HTML = "Guardar un Archivo HTML";
-    /**
-     *
-     */
-    public static String GUARDAR_LEX = "Guardar un Archivo Lex";
-    /**
-     *
+     *  Se toma el valor string para asignar un tipo de Archivo en la operaciones de abrir y guardar archivo
      */
     public static String Ext_HTML = "html";
     /**
-     *
+     *  Se toma el valor string para asignar un tipo de Archivo en la operaciones de abrir y guardar archivo
      */
     public static String Ext_LEX = "lex";
 }//fin de la clase Archivo

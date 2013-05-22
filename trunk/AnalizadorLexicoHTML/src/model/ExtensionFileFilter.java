@@ -6,7 +6,7 @@ import javax.swing.filechooser.FileFilter;
 /**
  * Clase que establece el filtro para la busqueda de tipo de archivos a leer
  *
- * @author GustavoCanul, NoeCob, ArandiLopez
+ * 
  */
 public class ExtensionFileFilter extends FileFilter implements Serializable {
 
